@@ -98,3 +98,6 @@ public actual fun Money.Companion.Ratio(
 @Suppress("ObjectPropertyName")
 private val _RATIO_ONE = JvmMoney.JvmRatio(BigDecimal.ONE)
 public actual val Money.Ratio.Companion.ONE: Money.Ratio get() = _RATIO_ONE
+
+public actual fun Int.toMoneyRatio(): Money.Ratio =
+  JvmMoney.JvmRatio(BigDecimal(this))

@@ -51,6 +51,10 @@ public interface Money {
 
   public operator fun times(ratio: Ratio): Money
 
+  public operator fun times(
+    scalar: Int
+  ): Money = this * scalar.toMoneyRatio()
+
   public operator fun compareTo(money: Money): Int
 
   /**
@@ -80,3 +84,8 @@ public expect fun Money.Companion.Ratio(value: String): Money.Ratio
 
 public expect val Money.Ratio.Companion.ONE: Money.Ratio
 
+public val String.moneyRatio get() = Money.Ratio(this)
+
+public expect fun Int.toMoneyRatio(): Money.Ratio
+
+public operator fun Int.times(money: Money): Money = toMoneyRatio().times(money)

@@ -33,7 +33,7 @@ public class NonJvmMoney(private val value: BigDecimal) : Money {
   )
 
   override fun times(ratio: Money.Ratio): Money = NonJvmMoney(
-    (value * (ratio as NativeRatio).value)
+    (value * (ratio as NonJvmRatio).value)
   )
 
   override fun compareTo(
@@ -52,7 +52,7 @@ public class NonJvmMoney(private val value: BigDecimal) : Money {
 
   override fun hashCode(): Int = value.hashCode()
 
-  internal class NativeRatio(internal val value: BigDecimal) : Money.Ratio {
+  internal class NonJvmRatio(internal val value: BigDecimal) : Money.Ratio {
 
     override fun times(amount: Money): Money = NonJvmMoney(
       (value * (amount as NonJvmMoney).value)
@@ -65,7 +65,7 @@ public class NonJvmMoney(private val value: BigDecimal) : Money {
     override fun equals(
       other: Any?
     ): Boolean = (other != null)
-        && (other is NativeRatio)
+        && (other is NonJvmRatio)
         && (value == other.value)
 
     override fun hashCode(): Int = value.hashCode()
@@ -88,10 +88,13 @@ public actual val Money.Companion.ONE: Money get() = _ONE
 
 public actual fun Money.Companion.Ratio(
   value: String
-): Money.Ratio = NonJvmMoney.NativeRatio(
+): Money.Ratio = NonJvmMoney.NonJvmRatio(
   BigDecimal.parseString(value)
 )
 
 @Suppress("ObjectPropertyName")
-private val _RATIO_ONE = NonJvmMoney.NativeRatio(BigDecimal.ONE)
+private val _RATIO_ONE = NonJvmMoney.NonJvmRatio(BigDecimal.ONE)
 public actual val Money.Ratio.Companion.ONE: Money.Ratio get() = _RATIO_ONE
+
+public actual fun Int.toMoneyRatio(): Money.Ratio =
+  NonJvmMoney.NonJvmRatio(BigDecimal.fromInt(this))
