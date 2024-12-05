@@ -1,0 +1,60 @@
+public final class com/xemantic/ai/money/JvmMoney : com/xemantic/ai/money/Money {
+	public fun <init> (Ljava/math/BigDecimal;)V
+	public fun compareTo (Lcom/xemantic/ai/money/Money;)I
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun minus (Lcom/xemantic/ai/money/Money;)Lcom/xemantic/ai/money/Money;
+	public fun plus (Lcom/xemantic/ai/money/Money;)Lcom/xemantic/ai/money/Money;
+	public fun times (Lcom/xemantic/ai/money/Money$Ratio;)Lcom/xemantic/ai/money/Money;
+	public fun times (Lcom/xemantic/ai/money/Money;)Lcom/xemantic/ai/money/Money;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/xemantic/ai/money/JvmMoneyKt {
+	public static final fun Money (Ljava/lang/String;)Lcom/xemantic/ai/money/Money;
+	public static final fun Ratio (Lcom/xemantic/ai/money/Money$Companion;Ljava/lang/String;)Lcom/xemantic/ai/money/Money$Ratio;
+	public static final fun getONE (Lcom/xemantic/ai/money/Money$Companion;)Lcom/xemantic/ai/money/Money;
+	public static final fun getONE (Lcom/xemantic/ai/money/Money$Ratio$Companion;)Lcom/xemantic/ai/money/Money$Ratio;
+	public static final fun getZERO (Lcom/xemantic/ai/money/Money$Companion;)Lcom/xemantic/ai/money/Money;
+}
+
+public abstract interface class com/xemantic/ai/money/Money {
+	public static final field Companion Lcom/xemantic/ai/money/Money$Companion;
+	public abstract fun compareTo (Lcom/xemantic/ai/money/Money;)I
+	public abstract fun minus (Lcom/xemantic/ai/money/Money;)Lcom/xemantic/ai/money/Money;
+	public abstract fun plus (Lcom/xemantic/ai/money/Money;)Lcom/xemantic/ai/money/Money;
+	public abstract fun times (Lcom/xemantic/ai/money/Money$Ratio;)Lcom/xemantic/ai/money/Money;
+	public abstract fun times (Lcom/xemantic/ai/money/Money;)Lcom/xemantic/ai/money/Money;
+}
+
+public final class com/xemantic/ai/money/Money$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract interface class com/xemantic/ai/money/Money$Ratio {
+	public static final field Companion Lcom/xemantic/ai/money/Money$Ratio$Companion;
+	public abstract fun times (Lcom/xemantic/ai/money/Money;)Lcom/xemantic/ai/money/Money;
+}
+
+public final class com/xemantic/ai/money/Money$Ratio$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/xemantic/ai/money/serialization/MoneyRatioSerializer : kotlinx/serialization/KSerializer {
+	public static final field INSTANCE Lcom/xemantic/ai/money/serialization/MoneyRatioSerializer;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/xemantic/ai/money/Money$Ratio;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/xemantic/ai/money/Money$Ratio;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/xemantic/ai/money/serialization/MoneySerializer : kotlinx/serialization/KSerializer {
+	public static final field INSTANCE Lcom/xemantic/ai/money/serialization/MoneySerializer;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/xemantic/ai/money/Money;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/xemantic/ai/money/Money;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
