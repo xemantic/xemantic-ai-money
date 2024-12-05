@@ -18,12 +18,20 @@ package com.xemantic.ai.money
 
 import com.xemantic.ai.money.test.shouldBe
 import kotlin.test.Test
+import kotlin.test.assertFailsWith
 
 class MoneyRatioTest {
 
   @Test
   fun `Should create Money Ratio instance from String`() {
     Money.Ratio("1.25").toString() shouldBe "1.25"
+  }
+
+  @Test
+  fun `Should not create Money Ratio instance from invalid String`() {
+    assertFailsWith<NumberFormatException> {
+      Money.Ratio("foo")
+    }
   }
 
   @Test
@@ -41,6 +49,24 @@ class MoneyRatioTest {
   @Test
   fun `Should multiple Money Ratio and Money`() {
     Money.Ratio("0.000001") * Money("3.0") shouldBe Money("0.000003")
+  }
+
+  @Test
+  fun `Should convert valid string to Money Ratio`() {
+    "0.000001".moneyRatio shouldBe Money.Ratio("0.000001")
+  }
+
+  @Test
+  fun `Should not convert invalid string to Money Ratio`() {
+    assertFailsWith<NumberFormatException> {
+      "foo".moneyRatio
+    }
+  }
+
+  @Test
+  fun `Should convert Int to Money Ratio`() {
+    1.toMoneyRatio() shouldBe Money.Ratio("1")
+    42.toMoneyRatio() shouldBe Money.Ratio("42")
   }
 
 }

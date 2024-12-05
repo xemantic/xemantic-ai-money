@@ -5,6 +5,7 @@ public final class com/xemantic/ai/money/JvmMoney : com/xemantic/ai/money/Money 
 	public fun hashCode ()I
 	public fun minus (Lcom/xemantic/ai/money/Money;)Lcom/xemantic/ai/money/Money;
 	public fun plus (Lcom/xemantic/ai/money/Money;)Lcom/xemantic/ai/money/Money;
+	public fun times (I)Lcom/xemantic/ai/money/Money;
 	public fun times (Lcom/xemantic/ai/money/Money$Ratio;)Lcom/xemantic/ai/money/Money;
 	public fun times (Lcom/xemantic/ai/money/Money;)Lcom/xemantic/ai/money/Money;
 	public fun toString ()Ljava/lang/String;
@@ -16,6 +17,7 @@ public final class com/xemantic/ai/money/JvmMoneyKt {
 	public static final fun getONE (Lcom/xemantic/ai/money/Money$Companion;)Lcom/xemantic/ai/money/Money;
 	public static final fun getONE (Lcom/xemantic/ai/money/Money$Ratio$Companion;)Lcom/xemantic/ai/money/Money$Ratio;
 	public static final fun getZERO (Lcom/xemantic/ai/money/Money$Companion;)Lcom/xemantic/ai/money/Money;
+	public static final fun toMoneyRatio (I)Lcom/xemantic/ai/money/Money$Ratio;
 }
 
 public abstract interface class com/xemantic/ai/money/Money {
@@ -23,12 +25,17 @@ public abstract interface class com/xemantic/ai/money/Money {
 	public abstract fun compareTo (Lcom/xemantic/ai/money/Money;)I
 	public abstract fun minus (Lcom/xemantic/ai/money/Money;)Lcom/xemantic/ai/money/Money;
 	public abstract fun plus (Lcom/xemantic/ai/money/Money;)Lcom/xemantic/ai/money/Money;
+	public abstract fun times (I)Lcom/xemantic/ai/money/Money;
 	public abstract fun times (Lcom/xemantic/ai/money/Money$Ratio;)Lcom/xemantic/ai/money/Money;
 	public abstract fun times (Lcom/xemantic/ai/money/Money;)Lcom/xemantic/ai/money/Money;
 }
 
 public final class com/xemantic/ai/money/Money$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/xemantic/ai/money/Money$DefaultImpls {
+	public static fun times (Lcom/xemantic/ai/money/Money;I)Lcom/xemantic/ai/money/Money;
 }
 
 public abstract interface class com/xemantic/ai/money/Money$Ratio {
@@ -38,6 +45,11 @@ public abstract interface class com/xemantic/ai/money/Money$Ratio {
 
 public final class com/xemantic/ai/money/Money$Ratio$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/xemantic/ai/money/MoneyKt {
+	public static final fun getMoneyRatio (Ljava/lang/String;)Lcom/xemantic/ai/money/Money$Ratio;
+	public static final fun times (ILcom/xemantic/ai/money/Money;)Lcom/xemantic/ai/money/Money;
 }
 
 public final class com/xemantic/ai/money/serialization/MoneyRatioSerializer : kotlinx/serialization/KSerializer {
