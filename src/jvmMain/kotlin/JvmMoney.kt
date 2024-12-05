@@ -24,11 +24,11 @@ import kotlin.times
 public class JvmMoney(private val value: BigDecimal) : Money {
 
   override fun plus(amount: Money): Money = JvmMoney(
-    value + (amount as JvmMoney).value
+    (value + (amount as JvmMoney).value).stripTrailingZeros()
   )
 
   override fun minus(amount: Money): Money = JvmMoney(
-    value - (amount as JvmMoney).value
+    (value - (amount as JvmMoney).value).stripTrailingZeros()
   )
 
   override fun times(amount: Money): Money = JvmMoney(
