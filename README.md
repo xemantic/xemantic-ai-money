@@ -45,7 +45,7 @@ In `build.gradle.kts` add:
 
 ```kotlin
 dependencies {
-  implementation("com.xemantic.ai:xemantic-ai-money:0.1")
+  implementation("com.xemantic.ai:xemantic-ai-money:0.2")
 }
 ```
 
