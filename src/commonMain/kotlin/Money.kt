@@ -58,7 +58,7 @@ public interface Money {
   public operator fun compareTo(money: Money): Int
 
   /**
-   * A ratio to multiply Money. I can be used for representing
+   * A ratio to multiply Money. It can be used for representing
    * small ratios, like price per LLM token.
    */
   @Description("Represents a ratio used to multiply Money")

@@ -29,11 +29,11 @@ public class NonJvmMoney(private val value: BigDecimal) : Money {
   )
 
   override fun times(amount: Money): Money = NonJvmMoney(
-    (value * (amount as NonJvmMoney).value)
+    value * (amount as NonJvmMoney).value
   )
 
   override fun times(ratio: Money.Ratio): Money = NonJvmMoney(
-    (value * (ratio as NonJvmRatio).value)
+    value * (ratio as NonJvmRatio).value
   )
 
   override fun compareTo(
