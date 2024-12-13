@@ -16,7 +16,7 @@
 
 package com.xemantic.ai.money
 
-import com.xemantic.ai.money.test.shouldBe
+import com.xemantic.kotlin.test.assert
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 
@@ -24,7 +24,7 @@ class MoneyTest {
 
   @Test
   fun `Should create Money instance from String`() {
-    Money("42.50").toString() shouldBe "42.5"
+    assert(Money("42.50").toString() == "42.5")
   }
 
   @Test
@@ -36,45 +36,45 @@ class MoneyTest {
 
   @Test
   fun `Should create Money instance with long fractional part`() {
-    Money("42.123456789").toString() shouldBe "42.123456789"
+    assert(Money("42.123456789").toString() == "42.123456789")
   }
 
   @Test
   fun `Should compare Money instances`() {
-    Money.ZERO shouldBe Money("0")
-    Money.ONE shouldBe Money("1")
-    Money.ONE shouldBe Money("1.0")
-    Money("0.1") shouldBe Money("0.100")
+    assert(Money.ZERO == Money("0"))
+    assert(Money.ONE == Money("1"))
+    assert(Money.ONE == Money("1.0"))
+    assert(Money("0.1") == Money("0.100"))
   }
 
   @Test
   fun `Should add Moneys`() {
-    Money("10.25") + Money("5.75") shouldBe Money("16.00")
+    assert(Money("10.25") + Money("5.75") == Money("16.00"))
   }
 
   @Test
   fun `Should subtract Moneys`() {
-    Money("20.00") - Money("7.50") shouldBe Money("12.50")
+    assert(Money("20.00") - Money("7.50") == Money("12.50"))
   }
 
   @Test
   fun `Should multiply Moneys`() {
-    Money("5.01") * Money("3.00") shouldBe Money("15.03")
+    assert(Money("5.01") * Money("3.00") == Money("15.03"))
   }
 
   @Test
   fun `Should multiply Money by Int Ratio scalar`() {
-    Money("5.01") * Money.Ratio("3") shouldBe Money("15.03")
+    assert(Money("5.01") * Money.Ratio("3") == Money("15.03"))
   }
 
   @Test
   fun `Should multiply Money by proportion Ratio`() {
-    Money("2.0") * Money.Ratio("1.25") shouldBe Money("2.5")
+    assert(Money("2.0") * Money.Ratio("1.25") == Money("2.5"))
   }
 
   @Test
   fun `Should create Money instance for token price`() {
-    Money("3.0") * Money.Ratio("0.000001") shouldBe Money("0.000003")
+    assert(Money("3.0") * Money.Ratio("0.000001") == Money("0.000003"))
   }
 
   @Test
@@ -85,21 +85,21 @@ class MoneyTest {
     val money3 = Money("20.00")
 
     // then
-    (money1 == money2) shouldBe true
-    (money1 < money3) shouldBe true
-    (money3 > money1) shouldBe true
-    (money1 == money3) shouldBe false
-    (money3 < money1) shouldBe false
+    assert(money1 == money2)
+    assert(money1 < money3)
+    assert(money3 > money1)
+    assert(money1 < money3)
+    assert(money3 > money2)
   }
 
   @Test
   fun `Should multiply Int and Money`() {
-    2 * Money("2.25") shouldBe Money("4.5")
+    assert(2 * Money("2.25") == Money("4.5"))
   }
 
   @Test
   fun `Should multiply Money and Int`() {
-    Money("2.25") * 2 shouldBe Money("4.5")
+    assert(Money("2.25") * 2 == Money("4.5"))
   }
 
 }

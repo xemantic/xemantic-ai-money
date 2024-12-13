@@ -5,7 +5,8 @@ javaTarget = "17"
 kotlin = "2.1.0"
 kotlinxSerialization = "1.7.3"
 
-xemanticAiToolSchema = "0.1.1"
+xemanticAiToolSchema = "0.1.4"
+xemanticKotlinTest = "1.0"
 
 bignum = "0.3.10"
 
@@ -21,6 +22,7 @@ kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 
 xemantic-ai-tool-schema = { module = "com.xemantic.ai:xemantic-ai-tool-schema", version.ref = "xemanticAiToolSchema" }
+xemantic-kotlin-test = { module="com.xemantic.kotlin:xemantic-kotlin-test", version.ref="xemanticKotlinTest" }
 
 bignum = { module = "com.ionspin.kotlin:bignum", version.ref = "bignum" }
 

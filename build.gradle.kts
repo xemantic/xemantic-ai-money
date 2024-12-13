@@ -133,6 +133,7 @@ kotlin {
       dependencies {
         implementation(libs.kotlin.test)
         implementation(libs.kotlinx.serialization.json)
+        implementation(libs.xemantic.kotlin.test)
       }
     }
 
@@ -180,7 +181,8 @@ tasks.withType<Test> {
 
 powerAssert {
   functions = listOf(
-    "com.xemantic.ai.money.test.shouldBe"
+    "com.xemantic.kotlin.test.assert",
+    "com.xemantic.kotlin.test.have"
   )
 }
 
