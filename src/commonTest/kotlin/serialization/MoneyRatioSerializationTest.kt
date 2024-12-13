@@ -18,10 +18,12 @@ package com.xemantic.ai.money.serialization
 
 import com.xemantic.ai.money.Money
 import com.xemantic.ai.money.Ratio
-import com.xemantic.ai.money.test.shouldBe
 import com.xemantic.ai.money.test.testJson
 import com.xemantic.ai.tool.schema.meta.Description
 import com.xemantic.ai.tool.schema.meta.Pattern
+import com.xemantic.kotlin.test.assert
+import com.xemantic.kotlin.test.be
+import com.xemantic.kotlin.test.should
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
 import kotlin.test.Test
@@ -30,23 +32,34 @@ class MoneyRatioSerializationTest {
 
   @Test
   fun `Should serialize Money Ratio to JSON`() {
-    val ratio = Money.Ratio("0.000001")
-    testJson.encodeToString(ratio) shouldBe """"0.000001""""
+    assert(
+      testJson.encodeToString(
+        Money.Ratio("0.000001")
+      ) == """"0.000001""""
+    )
   }
 
   @Test
   fun `Should deserialize Money Ratio from JSON`() {
-    val json = """"0.000001""""
-    val ratio = testJson.decodeFromString<Money.Ratio>(json)
-    ratio shouldBe Money.Ratio("0.000001")
+    assert(
+      testJson.decodeFromString<Money.Ratio>(
+        """"0.000001""""
+      ) == Money.Ratio("0.000001")
+    )
   }
 
   @Test
   fun `Should preserve tool schema annotations of Money Ratio`() {
     @OptIn(ExperimentalSerializationApi::class)
     val meta = Money.Ratio.serializer().descriptor.annotations
-    (meta[0] as Description).value shouldBe "Represents a ratio used to multiply Money"
-    (meta[1] as Pattern).regex shouldBe $$"""^-?\d*\.?\d+$"""
+    meta[0] should {
+      be<Description>()
+      assert(value == "Represents a ratio used to multiply Money")
+    }
+    meta[1] should {
+      be<Pattern>()
+      assert(regex == $$"""^-?\d*\.?\d+$""")
+    }
   }
 
 }

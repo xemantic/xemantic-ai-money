@@ -17,10 +17,13 @@
 package com.xemantic.ai.money.serialization
 
 import com.xemantic.ai.money.Money
-import com.xemantic.ai.money.test.shouldBe
 import com.xemantic.ai.money.test.testJson
 import com.xemantic.ai.tool.schema.meta.Description
 import com.xemantic.ai.tool.schema.meta.Pattern
+import com.xemantic.kotlin.test.assert
+import com.xemantic.kotlin.test.be
+import com.xemantic.kotlin.test.have
+import com.xemantic.kotlin.test.should
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
 import kotlin.test.Test
@@ -29,23 +32,34 @@ class MoneySerializationTest {
 
   @Test
   fun `Should serialize Money to JSON`() {
-    val money = Money("42.50")
-    testJson.encodeToString(money) shouldBe """"42.5""""
+    assert(
+      testJson.encodeToString(
+        Money("42.50")
+      ) == """"42.5""""
+    )
   }
 
   @Test
   fun `Should deserialize Money from JSON`() {
-    val json = """"42.5""""
-    val money = testJson.decodeFromString<Money>(json)
-    money shouldBe Money("42.5")
+    assert(
+      testJson.decodeFromString<Money>(
+        """"42.5""""
+      ) == Money("42.5")
+    )
   }
 
   @Test
   fun `Should preserve tool schema annotations of Money`() {
     @OptIn(ExperimentalSerializationApi::class)
     val meta = Money.serializer().descriptor.annotations
-    (meta[0] as Description).value shouldBe "Represents a monetary amount with arbitrary precision and no currency information"
-    (meta[1] as Pattern).regex shouldBe $$"""^-?\d*\.?\d+$"""
+    meta[0] should {
+      be<Description>()
+      have(value == "Represents a monetary amount with arbitrary precision and no currency information")
+    }
+    meta[1] should {
+      be<Pattern>()
+      have(regex == $$"""^-?\d*\.?\d+$""")
+    }
   }
 
 }

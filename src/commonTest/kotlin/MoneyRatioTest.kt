@@ -16,7 +16,7 @@
 
 package com.xemantic.ai.money
 
-import com.xemantic.ai.money.test.shouldBe
+import com.xemantic.kotlin.test.assert
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 
@@ -24,7 +24,7 @@ class MoneyRatioTest {
 
   @Test
   fun `Should create Money Ratio instance from String`() {
-    Money.Ratio("1.25").toString() shouldBe "1.25"
+    assert(Money.Ratio("1.25").toString() == "1.25")
   }
 
   @Test
@@ -36,24 +36,24 @@ class MoneyRatioTest {
 
   @Test
   fun `Should create Money Ratio instance with long fractional part`() {
-    Money.Ratio("0.0000001").toString() shouldBe "0.0000001"
+    assert(Money.Ratio("0.0000001").toString() == "0.0000001")
   }
 
   @Test
   fun `Should compare Money Ratio instances`() {
-    Money.Ratio.ONE shouldBe Money.Ratio("1")
-    Money.Ratio("0") shouldBe Money.Ratio("0.0")
-    Money.Ratio("0.1") shouldBe Money.Ratio("0.100000")
+    assert(Money.Ratio.ONE == Money.Ratio("1"))
+    assert(Money.Ratio("0") == Money.Ratio("0.0"))
+    assert(Money.Ratio("0.1") == Money.Ratio("0.100000"))
   }
 
   @Test
   fun `Should multiple Money Ratio and Money`() {
-    Money.Ratio("0.000001") * Money("3.0") shouldBe Money("0.000003")
+    assert(Money.Ratio("0.000001") * Money("3.0") == Money("0.000003"))
   }
 
   @Test
   fun `Should convert valid string to Money Ratio`() {
-    "0.000001".moneyRatio shouldBe Money.Ratio("0.000001")
+    assert("0.000001".moneyRatio == Money.Ratio("0.000001"))
   }
 
   @Test
@@ -65,8 +65,8 @@ class MoneyRatioTest {
 
   @Test
   fun `Should convert Int to Money Ratio`() {
-    1.toMoneyRatio() shouldBe Money.Ratio("1")
-    42.toMoneyRatio() shouldBe Money.Ratio("42")
+    assert(1.toMoneyRatio() == Money.Ratio("1"))
+    assert(42.toMoneyRatio() == Money.Ratio("42"))
   }
 
 }
