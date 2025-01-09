@@ -22,21 +22,15 @@ Real-time calculation of LLM usage costs - a Kotlin multiplatform library
 
 ## Why?
 
-The APIs of AI companies, like [OpenAI API](https://platform.openai.com/docs/api-reference/introduction)
-and [Anthropic API](https://docs.anthropic.com/en/api/getting-started), are providing the usage information regarding
-input and output tokens associated with each API call.
-Depending on many factors, like the model being used, batch processing, involved cache, etc., these tokens can be billed
-according to particular rules.
+The APIs of AI companies, like [OpenAI API](https://platform.openai.com/docs/api-reference/introduction) and [Anthropic API](https://docs.anthropic.com/en/api/getting-started), are providing the usage information regarding input and output tokens associated with each API call.
+Depending on many factors, like the model being used, batch processing, involved cache, etc., these tokens can be billed according to particular rules.
 This library is fulfilling the need of proper accounting of API usage by:
 
-* representing monetary amounts as [Money](src/commonMain/kotlin/Money.kt) interface, supporting big decimal arithmetics
-  and operator overloading,
-* representing ratios of monetary amounts (e.g. input token cost for given model)
-  as [Money.Ratio](src/commonMain/kotlin/Money.kt) interface.
+* representing monetary amounts as [Money](src/commonMain/kotlin/Money.kt) interface, supporting big decimal arithmetics and operator overloading,
+* representing ratios of monetary amounts (e.g. input token cost for given model) as [Money.Ratio](src/commonMain/kotlin/Money.kt) interface.
 
 > [!NOTE]
-> The `xemantic-ai-money` was initially a part of
-> the [anthropic-sdk-kotlin](https://github.com/xemantic/anthropic-sdk-kotlin), but was eventually externalized, as a
+> The `xemantic-ai-money` was initially a part of the [anthropic-sdk-kotlin](https://github.com/xemantic/anthropic-sdk-kotlin), but was eventually externalized, as a
 > common functionality applicable across various API-related use cases.
 
 ## Usage
