@@ -11,15 +11,6 @@ public final class com/xemantic/ai/money/JvmMoney : com/xemantic/ai/money/Money 
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class com/xemantic/ai/money/JvmMoneyKt {
-	public static final fun Money (Ljava/lang/String;)Lcom/xemantic/ai/money/Money;
-	public static final fun Ratio (Lcom/xemantic/ai/money/Money$Companion;Ljava/lang/String;)Lcom/xemantic/ai/money/Money$Ratio;
-	public static final fun getONE (Lcom/xemantic/ai/money/Money$Companion;)Lcom/xemantic/ai/money/Money;
-	public static final fun getONE (Lcom/xemantic/ai/money/Money$Ratio$Companion;)Lcom/xemantic/ai/money/Money$Ratio;
-	public static final fun getZERO (Lcom/xemantic/ai/money/Money$Companion;)Lcom/xemantic/ai/money/Money;
-	public static final fun toMoneyRatio (I)Lcom/xemantic/ai/money/Money$Ratio;
-}
-
 public abstract interface class com/xemantic/ai/money/Money {
 	public static final field Companion Lcom/xemantic/ai/money/Money$Companion;
 	public abstract fun compareTo (Lcom/xemantic/ai/money/Money;)I
@@ -50,6 +41,15 @@ public final class com/xemantic/ai/money/Money$Ratio$Companion {
 public final class com/xemantic/ai/money/MoneyKt {
 	public static final fun getMoneyRatio (Ljava/lang/String;)Lcom/xemantic/ai/money/Money$Ratio;
 	public static final fun times (ILcom/xemantic/ai/money/Money;)Lcom/xemantic/ai/money/Money;
+}
+
+public final class com/xemantic/ai/money/Money_jvmKt {
+	public static final fun Money (Ljava/lang/String;)Lcom/xemantic/ai/money/Money;
+	public static final fun Ratio (Lcom/xemantic/ai/money/Money$Companion;Ljava/lang/String;)Lcom/xemantic/ai/money/Money$Ratio;
+	public static final fun getONE (Lcom/xemantic/ai/money/Money$Companion;)Lcom/xemantic/ai/money/Money;
+	public static final fun getONE (Lcom/xemantic/ai/money/Money$Ratio$Companion;)Lcom/xemantic/ai/money/Money$Ratio;
+	public static final fun getZERO (Lcom/xemantic/ai/money/Money$Companion;)Lcom/xemantic/ai/money/Money;
+	public static final fun toMoneyRatio (I)Lcom/xemantic/ai/money/Money$Ratio;
 }
 
 public final class com/xemantic/ai/money/serialization/MoneyRatioSerializer : kotlinx/serialization/KSerializer {

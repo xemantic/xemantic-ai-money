@@ -3,5 +3,5 @@ val name = "xemantic-ai-money"
 
 rootProject.name = name
 gradle.beforeProject {
-  group = groupId
+    group = groupId
 }

@@ -1,13 +1,13 @@
 #!/bin/bash
 
 #
-# Copyright 2024 Kazimierz Pogoda / Xemantic
+# Copyright 2024-2025 Kazimierz Pogoda / Xemantic
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+#     https://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -47,19 +47,19 @@ fi
 ESCAPED_GROUP_ID=$(echo "$GROUP_ID" | sed 's/\./\\./g')
 
 # Create the pattern to match
-PATTERN="\"$ESCAPED_GROUP_ID:$ARTIFACT_ID:[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\""
+PATTERN="\"$ESCAPED_GROUP_ID:$ARTIFACT_ID:[0-9]+(\.[0-9]+){0,2}\""
 
 # Create the replacement string
 REPLACEMENT="\"$GROUP_ID:$ARTIFACT_ID:$VERSION\""
 
 # Check if the pattern exists in the file
-if ! grep -q "$GROUP_ID:$ARTIFACT_ID:[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*" README.md; then
+if ! grep -Eq "$GROUP_ID:$ARTIFACT_ID:[0-9]+(\.[0-9]+){0,2}" README.md; then
     echo "Error: Dependency pattern not found in README.md"
     exit 1
 fi
 
 # Perform the replacement and save to a temporary file
-sed "s|$PATTERN|$REPLACEMENT|g" README.md > README.md.tmp
+sed -E "s|$PATTERN|$REPLACEMENT|g" README.md > README.md.tmp
 
 # Check if sed made any changes
 if cmp -s README.md README.md.tmp; then
