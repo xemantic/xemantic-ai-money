@@ -1,11 +1,11 @@
 /*
- * Copyright 2024 Kazimierz Pogoda / Xemantic
+ * Copyright 2024-2025 Kazimierz Pogoda / Xemantic
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -43,34 +43,34 @@ import kotlinx.serialization.Serializable
 @Serializable(MoneySerializer::class)
 public interface Money {
 
-  public operator fun plus(money: Money): Money
+    public operator fun plus(money: Money): Money
 
-  public operator fun minus(money: Money): Money
-
-  public operator fun times(money: Money): Money
-
-  public operator fun times(ratio: Ratio): Money
-
-  public operator fun times(
-    scalar: Int
-  ): Money = this * scalar.toMoneyRatio()
-
-  public operator fun compareTo(money: Money): Int
-
-  /**
-   * A ratio to multiply Money. It can be used for representing
-   * small ratios, like price per LLM token.
-   */
-  @Description("Represents a ratio used to multiply Money")
-  @Pattern($$"""^-?\d*\.?\d+$""")
-  @Serializable(MoneyRatioSerializer::class)
-  public interface Ratio {
+    public operator fun minus(money: Money): Money
 
     public operator fun times(money: Money): Money
 
-    public companion object
+    public operator fun times(ratio: Ratio): Money
 
-  }
+    public operator fun times(
+        scalar: Int
+    ): Money = this * scalar.toMoneyRatio()
+
+    public operator fun compareTo(money: Money): Int
+
+    /**
+     * A ratio to multiply Money. It can be used for representing
+     * small ratios, like price per LLM token.
+     */
+    @Description("Represents a ratio used to multiply Money")
+    @Pattern($$"""^-?\d*\.?\d+$""")
+    @Serializable(MoneyRatioSerializer::class)
+    public interface Ratio {
+
+        public operator fun times(money: Money): Money
+
+        public companion object
+
+    }
 
 }
 
